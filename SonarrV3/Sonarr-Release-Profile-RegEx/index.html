@@ -1,0 +1,1324 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Here you will find a collection of Setup Guides, Tips and Scripts that I've made/collected.">
+      
+      
+        <link rel="canonical" href="https://TRaSH-.github.io/Tutorials-FAQ/SonarrV3/Sonarr-Release-Profile-RegEx/">
+      
+      
+        <meta name="author" content="TRaSH-">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Sonarr Release Profile RegEx - Tutorials-FAQ</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+      <link rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="red">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sonarr-release-profile-regex-web-dl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://TRaSH-.github.io/Tutorials-FAQ" title="Tutorials-FAQ" class="md-header-nav__button md-logo" aria-label="Tutorials-FAQ">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Tutorials-FAQ
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Sonarr Release Profile RegEx
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/TRaSH-/Tutorials-FAQ/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TRaSH-/Tutorials-FAQ
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://TRaSH-.github.io/Tutorials-FAQ" title="Tutorials-FAQ" class="md-nav__button md-logo" aria-label="Tutorials-FAQ">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Tutorials-FAQ
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/TRaSH-/Tutorials-FAQ/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TRaSH-/Tutorials-FAQ
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Misc
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Misc" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Misc
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Misc/How-to-provide-a-docker-compose-when-you-need-help-on-Discord/" class="md-nav__link">
+      How to provide a docker compose when you need help on Discord
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Misc/How-to-setup-Torguard-for-port-forwarding/" class="md-nav__link">
+      How to setup Torguard for port forwarding
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Misc/x265-4k/" class="md-nav__link">
+      X265 4k
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      NZBGet
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="NZBGet" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        NZBGet
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/How-to-setup-NZBGet/" class="md-nav__link">
+      How to setup NZBGet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      Scripts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Scripts" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        <span class="md-nav__icon md-icon"></span>
+        Scripts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/scripts/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-2" type="checkbox" id="nav-3-3-2">
+    
+    <label class="md-nav__link" for="nav-3-3-2">
+      Clean
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Clean" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-2">
+        <span class="md-nav__icon md-icon"></span>
+        Clean
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/scripts/Clean/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-3" type="checkbox" id="nav-3-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3-3">
+      HashRenamer
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="HashRenamer" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-3">
+        <span class="md-nav__icon md-icon"></span>
+        HashRenamer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/scripts/HashRenamer/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3-3-4" type="checkbox" id="nav-3-3-4">
+    
+    <label class="md-nav__link" for="nav-3-3-4">
+      WtFnZb Renamer
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="WtFnZb Renamer" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-3-4">
+        <span class="md-nav__icon md-icon"></span>
+        WtFnZb Renamer
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NZBGet/scripts/WtFnZb-Renamer/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Plex
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Plex" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Plex
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Plex/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Profiles
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Profiles" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon"></span>
+        Profiles
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Plex/Profiles/" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Radarr
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Radarr" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Radarr
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Radarr/Collection-of-Custom-Formats-for-Radarr/" class="md-nav__link">
+      Collection of Custom Formats for Radarr
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Radarr/How-to-get-Quality-Releases/" class="md-nav__link">
+      How to get Quality Releases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Radarr/How-to-make-sure-Radarr-doesnt-snatch-Full-BluRays/" class="md-nav__link">
+      How to make sure Radarr doesn't snatch Full Blurays (ISO/BDMV)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Radarr/Remote-Path-Mappings-explained-for-Radarr/" class="md-nav__link">
+      Remote Path Mappings explained for Radarr
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      RadarrV3
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="RadarrV3" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        RadarrV3
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../RadarrV3/Collection-of-Custom-Formats-for-RadarrV3/" class="md-nav__link">
+      Collection of Custom Formats for Radarr V3 (Aphrodite)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../RadarrV3/How-to-importexport-Custom-Formats-and-truly-make-use-of-it/" class="md-nav__link">
+      How to importexport Custom Formats and truly make use of it
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../RadarrV3/Radarr-Quality-Settings-File-Size/" class="md-nav__link">
+      Radarr Quality Settings File Size
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../RadarrV3/Radarr-recommended-naming-scheme-examples/" class="md-nav__link">
+      Radarr recommended naming scheme examples
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      SonarrV2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SonarrV2" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        SonarrV2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../SonarrV2/How-To-Seperate-Different-WEB-DL-Releases/" class="md-nav__link">
+      Sonarr-How-To-Seperate-Different-WEB-DL-Releases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../SonarrV2/Restrictions-For-Better-Quality-Releases/" class="md-nav__link">
+      Sonarr-Restrictions-For-Better-Quality-Releases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      SonarrV3
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SonarrV3" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        SonarrV3
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Index
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Remote-Path-Mappings-explained-for-Sonarr/" class="md-nav__link">
+      Remote Path Mappings explained for Sonarr
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Sonarr-Quality-Settings-File-Size/" class="md-nav__link">
+      Sonarr Quality Settings File Size
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Sonarr Release Profile RegEx
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Sonarr Release Profile RegEx
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sonarr-release-profile-regex-web-dl" class="md-nav__link">
+    Sonarr Release Profile RegEx (WEB-DL)
+  </a>
+  
+    <nav class="md-nav" aria-label="Sonarr Release Profile RegEx (WEB-DL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propers-and-repacks" class="md-nav__link">
+    Propers and Repacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-source-streaming-service" class="md-nav__link">
+    Release Source (Streaming Service)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    NOTE:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2p-low-quality-scene-groups" class="md-nav__link">
+    P2P + Low Quality Scene Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-preferred-preferences" class="md-nav__link">
+    Optional preferred preferences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-little-explanation-of-the-scores-and-why" class="md-nav__link">
+    A little explanation of the scores and why
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-results" class="md-nav__link">
+    Final Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-not-x265" class="md-nav__link">
+    Why Not x265
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Not x265">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-extra-info-about-4kx265" class="md-nav__link">
+    Some extra info about 4K/X265
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Sonarr-recommended-naming-scheme-examples/" class="md-nav__link">
+      Sonarr recommended naming scheme examples
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sonarr-release-profile-regex-web-dl" class="md-nav__link">
+    Sonarr Release Profile RegEx (WEB-DL)
+  </a>
+  
+    <nav class="md-nav" aria-label="Sonarr Release Profile RegEx (WEB-DL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propers-and-repacks" class="md-nav__link">
+    Propers and Repacks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-source-streaming-service" class="md-nav__link">
+    Release Source (Streaming Service)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    NOTE:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2p-low-quality-scene-groups" class="md-nav__link">
+    P2P + Low Quality Scene Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-preferred-preferences" class="md-nav__link">
+    Optional preferred preferences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-little-explanation-of-the-scores-and-why" class="md-nav__link">
+    A little explanation of the scores and why
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-results" class="md-nav__link">
+    Final Results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-not-x265" class="md-nav__link">
+    Why Not x265
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Not x265">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-extra-info-about-4kx265" class="md-nav__link">
+    Some extra info about 4K/X265
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/TRaSH-/Tutorials-FAQ/edit/master/docs/SonarrV3/Sonarr-Release-Profile-RegEx.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Sonarr Release Profile RegEx</h1>
+                
+                <h2 id="sonarr-release-profile-regex-web-dl">Sonarr Release Profile RegEx (WEB-DL)<a class="headerlink" href="#sonarr-release-profile-regex-web-dl" title="Permanent link">&para;</a></h2>
+<p>(<em>the regex isn't mentioned anywhere, it's a hidden advanced feature</em>)</p>
+<hr />
+<p>Sonarr V3 has a great feature called Release Profile.
+With this option you can fine tune your preference.</p>
+<p>The Release profile that we're going to use for this example is mainly to prefer P2P releases over Scene releases, (Scene releases are still being downloaded but upgraded).</p>
+<p><strong>So if you care less about quality then stop reading and don't use this guide.</strong></p>
+<p>Why ? Scene release always release in a rush to bring it out as fast as possible,
+so I noticed  often that I got Repacks/Proper releases from them or from different groups and quality.
+P2P releases are a bit smarter and work sort of together by not doing the same release.
+Also I noticed that with some Scene releases the 5.1 audio was stripped out or converted to AAC audio.
+And in my opinion the P2P are of better quality.
+Theirs 1 Scene releaser that do bring out quality releases <code>-deflate/-inflate</code> .</p>
+<blockquote>
+<p><strong><em>Keep in mind this list will be a constant work in progress because I will be updating it when it's needed</em></strong>
+<strong><em>So best to set a notification for updates for this page.</em></strong></p>
+</blockquote>
+<h4 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><em>A large portion of Amazon WEB-DLs in the last week have only had 192Kbps DD+5.1, because that's all Amazon made available initially.</em> 
+  <em>The proper 640Kbps DD+5.1 audio might appear a few hours later or a few months, but when they get updated the episodes will be REPACKED.</em></p>
+</li>
+<li>
+<p><strong>I decided to redo the Release Profile to make it easier for for me and the end user to update/manage the Release Profile, I decided not to add the scene groups anymore (and also removing the current ones). Why ? Lately I noticed allot of popup scene releases meaning we need to update often.</strong>
+  <strong>With this it also means all scene and (yet) unknown groups will be getting a score of <code>0</code> and not <code>-50</code>.</strong>
+  <strong>I will still keep a eye on them and add the Low Quality Groups to the <code>-100</code> score and when I find a new P2P group I will add them, resulting in less updates and a more accurate upgrade.</strong></p>
+</li>
+</ul>
+<hr />
+<h4 id="propers-and-repacks">Propers and Repacks<a class="headerlink" href="#propers-and-repacks" title="Permanent link">&para;</a></h4>
+<p>First we're need to make sure a P2P release isn't being replaced by a Scene Repack/Proper release !</p>
+<p><img alt="" src="../images/1571575011671.png" /></p>
+<p>Settings =&gt; <code>Media Management</code>
+Where we going to set it to <code>Do not Prefer</code></p>
+<p>Then we navigate in Sonarr to the Settings =&gt;  <code>Profiles</code></p>
+<p><img alt="" src="../images/1571573554399.png" /></p>
+<p>Then you will get a popup screen that will look like this =&gt;</p>
+<p><img alt="image-20200930190924569" src="../images/image-20200930190924569.png" /></p>
+<p><code>Must Contain</code> =&gt; add words that the release name <strong>MUST HAVE!</strong></p>
+<p><code>Must Not Contain</code> =&gt; add words that the release name <strong>MUST NOT HAVE AND SO TO BE IGNORE!</strong></p>
+<p><code>Preferred</code> =&gt; add words you prefer with a certain score what you prefer more or upgrade.</p>
+<p><code>Include Preferred when Renaming</code> =&gt; When you add <code>{Preferred Words}</code> to your renaming scheme it will add this info.</p>
+<p><code>Indexers</code> =&gt; Specify what indexer the profile applies to.</p>
+<p><code>Tags</code> =&gt; create a tag so this is only used by shows that you give this tag or else it's global.</p>
+<p>The Number between the <strong>[</strong>brackets<strong>]</strong> are the scores the release name will get during a automatic and manual search and with the use of the scores some releases will be preferred over others and even upgraded.</p>
+<h4 id="release-source-streaming-service">Release Source (Streaming Service)<a class="headerlink" href="#release-source-streaming-service" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code># Preferred (3)
+ [100]   /(amzn|amazon).?web.?dl/i
+ [100]   /(atvp).?web.?dl/i
+ [100]   /(hmax).?web.?dl/i
+  [90]   /(dsnp|dsny|disney).?web.?dl/i
+  [90]   /(nf|netflix).?web.?dl/i
+  [90]   /(qibi).?web.?dl/i
+  [85]   /(hulu).?web.?dl/i
+  [75]   /(dcu).?web.?dl/i
+  [75]   /(hbo).?web.?dl/i
+  [75]   /(red).?web.?dl/i
+  [75]   /(it).?web.?dl/i
+</code></pre></div>
+<h4 id="note">NOTE:<a class="headerlink" href="#note" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Also check mark <code>Include Preferred when Renaming</code> and add <code>{Preferred Words}</code> to your renaming scheme when you get download loop issues!!!</p>
+<p>What it does:</p>
+<p>When enabled the block with the <a href="#release-source-streaming-service">Release Source (Streaming Service)</a> in it are then added to the file name which fixes any loops due to Sonarr seeing a new NF rip when an AMZN rip is found.
+Probably doesn’t happen if cutoff is met, but for anything that is unmet or any forced searches it results in a loop because NF is not in Sonarr’s copy so it upgrades, and loops.
+Enabling the include in preferred words for AMZN and adding that to the file name fixes that.</p>
+<p>Example of a naming scheme for series:</p>
+<p><code>{Series TitleYear} - S{season:00}E{episode:00} - {Episode CleanTitle} {[Quality Full]}{[MediaInfo Simple]}{[Preferred Words]}{-Release Group}</code></p>
+</blockquote>
+<h4 id="p2p-low-quality-scene-groups">P2P + Low Quality Scene Groups<a class="headerlink" href="#p2p-low-quality-scene-groups" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code># Must Not Contain (2)
+/(x|h)\.?265/i, hevc
+
+# Preferred (3)
+  [80]   /(-deflate|-inflate)/i
+  [50]   /(-AJP69|-BTN|-CasStudio|-CtrlHD|-KiNGS)/i
+  [50]   /(-monkee|-NTb|-NTG|-QOQ|-RTN)/i
+  [50]   /(-TOMMY|-ViSUM|-T6D)/i
+  [25]   /(-BTW|-Chotab|-CiT|-DEEP|-iJP|-iT00NZ)/i
+  [25]   /(-LAZY|-NYH|-SA89|-SIGMA|-TEPES|-TVSmash)/i
+  [25]   /(-SDCC|-iKA|-iJP|-Cinefeel|-SPiRiT|-FC)/i
+  [25]   /(-JETIX|-Coo7|-WELP|-KiMCHI|-BLUTONiUM)/i
+  [25]   /(-orbitron|-ETHiCS|-RTFM|-PSiG|-MZABI)/i
+  [12]   /(repack3)/i
+  [11]   /(repack2)/i
+  [10]   /(repack|proper)/i
+
+ [-100]  /(TBS|-BRiNK|-CHX|-XLF|-worldmkv|-GHOSTS)/i
+ [-100]  /(-VIDEOHOLE)/i
+</code></pre></div>
+<h4 id="optional-preferred-preferences">Optional preferred preferences<a class="headerlink" href="#optional-preferred-preferences" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code># Optional (use these only if you dislike renamed and retagged releases)
+  [-25]  /(\[rartv\]|\[eztv\]|\[TGx\])/i
+  [-25]  /(-4P|-4Planet|-AsRequested|-BUYMORE)/i
+  [-25]  /(-Chamele0n|-GEROV|-iNC0GNiTO|-NZBGeek)/i
+  [-25]  /(-Obfuscated|-postbot|-Rakuv|-Scrambled)/i
+  [-25]  /(-WhiteRev|-xpost)/i
+# Optional (matches releases that ends with EN)
+  [-25]  /\s?\ben\b$/i
+# Optional Matches any release that contains &#39;1-&#39; as prefix for Release Groups
+  [-25]  /(1-.+)$/i
+# Optional Matches Season Packs (use this if you prefer Season packs)
+  [15]   /\bS\d+\b(?!E\d+\b)/i
+</code></pre></div>
+<h4 id="a-little-explanation-of-the-scores-and-why">A little explanation of the scores and why<a class="headerlink" href="#a-little-explanation-of-the-scores-and-why" title="Permanent link">&para;</a></h4>
+<p>Scores [75]-[100] Release Source.
+Scores [25]-[50] P2P Groups.
+Scores [10] Give a repack/proper a higher score but don't trump P2P groups for a Scene fix.</p>
+<p>Scores [-25] Retagged/Renames/Obfuscated  releases.</p>
+<blockquote>
+<p><img alt="" src="../images/animated-exclamation-mark-image-0006.gif" /><em>If you're getting often a error message like</em> <code>Has the same filesize as existing file</code> <em>you might need to consider to remove the [-25].</em><img alt="" src="../images/animated-exclamation-mark-image-0006-1581778210859.gif" /></p>
+</blockquote>
+<p>Scores [-100] Groups that mess with the audio or add another preferred language.</p>
+<p>Optional =&gt; We've tested it and it worked for what we've tested it on, if it will work in your situation we don't know if you notice something wrong just contact me and we will try to fix it or remove it.</p>
+<p>The reason why I got multiple entry's with the same score is because the line will go out of the box and I don't like how that looks.</p>
+<h4 id="final-results">Final Results<a class="headerlink" href="#final-results" title="Permanent link">&para;</a></h4>
+<p>When you've done it correctly it will look something like this.</p>
+<p><img alt="image-20201004135035478" src="../images/image-20201004135035478.png" /></p>
+<p>And after you clicked on <code>Save</code> it will look something like this:</p>
+<p><img alt="image-20200930194224862" src="../images/image-20200930194224862.png" /></p>
+<hr />
+<blockquote>
+<p><em>This list is made by collecting information from Sonarr Discord Channel,</em>
+<em>and personal testing and a few others that helped.</em>
+<em>So I want to thnx everyone who helped to make this list possible,</em>
+<em>For privacy reasons I decided not to add the names/nick of the persons.</em>
+<em>If you want to be mentioned please message me on discord,</em>
+<em>including a link for proof to what part you want to be credited.</em></p>
+</blockquote>
+<hr />
+<h3 id="why-not-x265">Why Not x265<a class="headerlink" href="#why-not-x265" title="Permanent link">&para;</a></h3>
+<p>Then the question why I put <code>/(x|h)\.?265/i</code> as <code>Must Not Contain</code>.
+Luckily someone else on Discord described it nice and correctly in my opinion.</p>
+<div class="highlight"><pre><span></span><code>x265 is good for for 4k stuff or 1080p if they used the the remuxes as source.
+If the media isn&#39;t source quality/remux, then there will be a loss of quality every time.
+Also, once you go x265, typically that file is done.
+It can&#39;t be changed to something else without a huge loss of quality.
+
+Something like 95% of video files are x264 and have much better direct play support.
+If you have more than a couple users,
+you will notice much more transcoding.
+Just depends on your priorities.
+
+So basically if you are storage poor and just need to save space, use x265.
+The catch is if you want best quality x265, you need source quality files, so you still have huge file sizes.
+If you want maximum compatibility and the option to change your files to something else later,
+then x264.
+It&#39;s all really dependent on specific situations for different people
+</code></pre></div>
+<h4 id="some-extra-info-about-4kx265">Some extra info about 4K/X265<a class="headerlink" href="#some-extra-info-about-4kx265" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Source: Plex, <a href="https://forums.plex.tv/t/plex-4k-transcoding-and-you-aka-the-rules-of-4k-a-faq/378203">4k, transcoding, and you - aka the rules of 4k - a FAQ</a></p>
+<ol>
+<li>Don’t bother transcoding 4k</li>
+<li>If you cannot direct play 4k, then perhaps you should not even be collecting 4k.</li>
+<li>If you don’t have the storage space for a copy of both 4k and 1080/720, then perhaps you should not even be collecting 4k.</li>
+<li>To avoid transcoding for remote and non-4k clients, keep your 4k content in separate plex libraries.</li>
+<li>This may of course mean that you keep a 4k copy and a 1080/720 copy, but if you are collecting 4k content then you should not be worried about storage space, should you?</li>
+</ol>
+</blockquote>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../Sonarr-Quality-Settings-File-Size/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Sonarr Quality Settings File Size
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../Sonarr-recommended-naming-scheme-examples/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Sonarr recommended naming scheme examples
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 TRaSH-
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.instant'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
